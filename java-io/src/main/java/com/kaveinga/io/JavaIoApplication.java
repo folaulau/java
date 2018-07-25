@@ -1,12 +1,12 @@
-package com.kaveinga.javaregex;
+package com.kaveinga.io;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class JavaRegexApplication {
+public class JavaIoApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(JavaRegexApplication.class, args);
+		SpringApplication.run(JavaIoApplication.class, args);
 	}
 }
