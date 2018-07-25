@@ -1,9 +1,6 @@
-package com.kaveinga.io;
-
-import static org.junit.Assert.*;
+package com.kaveinga.io.read;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 

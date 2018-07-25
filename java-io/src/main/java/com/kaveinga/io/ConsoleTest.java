@@ -1,14 +1,13 @@
 package com.kaveinga.io;
 
-import static org.junit.Assert.*;
-
 import java.io.Console;
 
 import org.junit.Test;
 
 public class ConsoleTest {
 	
-	public static void main(String[] args) {
+	@Test
+	public void test() {
 		try {
 			Console console = System.console();
 			

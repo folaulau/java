@@ -1,4 +1,4 @@
-package com.kaveinga.io;
+package com.kaveinga.io.write;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
