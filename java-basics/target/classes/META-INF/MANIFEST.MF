@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Implementation-Title: java-basics
+Implementation-Version: 0.0.1-SNAPSHOT
+Built-By: folaukaveinga
+Implementation-Vendor-Id: java-basics
+Build-Jdk: 1.8.0_161
+Implementation-URL: https://projects.spring.io/spring-boot/#/spring-bo
+ ot-starter-parent/java-basics
+Created-By: Maven Integration for Eclipse
+
