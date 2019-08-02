@@ -7,6 +7,7 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 import org.junit.Test;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.util.ResourceUtils;
 
 public class FileReaderTest {
@@ -33,6 +34,31 @@ public class FileReaderTest {
 		// file in resources folder
 		try{
 			scanner = new Scanner(ResourceUtils.getFile("classpath:drug-condition-mapping-dev.csv"));
+			
+			while(scanner.hasNext()) {
+				String line = scanner.nextLine();
+				//System.out.println(line.toString());
+				String[] columns = line.split(",");
+				String prescription = columns[0];
+				String drug = columns[1];
+				System.out.println("prescription: "+prescription+", drug: "+drug+"\n\n\n");
+			}
+			
+		} catch (IOException e) {
+			System.err.println("IOException, msg: {}"+e.getMessage());
+		}finally {
+			if(scanner!=null) {
+				scanner.close();
+			}
+		}
+	}
+	
+	@Test
+	public void testClassPathResource() {
+		Scanner scanner = null;
+		// file in resources folder
+		try{
+			scanner = new Scanner(new ClassPathResource("drug-condition-mapping-dev.csv").getFile());
 			
 			while(scanner.hasNext()) {
 				String line = scanner.nextLine();

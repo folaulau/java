@@ -1,0 +1,5 @@
+Resources and References
+
+* https://beginnersbook.com/2017/10/java-8-features-with-examples/
+* https://www.tutorialspoint.com/java8/index.htm
+* https://howtodoinjava.com/java-8-tutorial/

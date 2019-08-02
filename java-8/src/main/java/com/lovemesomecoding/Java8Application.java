@@ -1,4 +1,4 @@
-package com.kaveinga8;
+package com.lovemesomecoding;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
