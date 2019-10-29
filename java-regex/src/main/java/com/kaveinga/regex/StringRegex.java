@@ -4,50 +4,32 @@ import java.util.regex.Pattern;
 
 public class StringRegex {
 
-	public static void main(String[] args) {
-		StringRegex stringRegex = new StringRegex();
-		String str = "test";
-		int length = 4;
-		Boolean valid = stringRegex.isValidLength(str, length);
-		System.out.println("valid: " + valid);
-		
-		String element = "<b>Folau<div> Kaveinga</div></b>";
-		System.out.println("element: " + element);
-		element = stringRegex.stripHtmlTag(element);
-		System.out.println("element: " + element);
-	}
-
-	public Boolean isValidLength(String str, int length) {
-		StringBuilder regex = new StringBuilder();
-		regex.append("^\\w{" + length + "}$");
-		return Pattern.compile(regex.toString()).matcher(str).matches();
-	}
-
-	// social security number
-	public Boolean isValidSsn(String ssn) {
-		StringBuilder regex = new StringBuilder();
-		regex.append("^\\d{3}-?\\d{2}-?\\d{4}$");
-		return Pattern.compile(regex.toString()).matcher(ssn).matches();
-	}
-
-	// zipcode
-	// ^\d{5}(-\d{4})?$ - (99999-9999)
-	// ^\d{5}$ - (99999)
-	public Boolean isValidZipcode(String zipcode) {
-		StringBuilder regex = new StringBuilder();
-		regex.append("^\\d{5}$");
-		return Pattern.compile(regex.toString()).matcher(zipcode).matches();
+	public static Boolean isValidLength(String str, int length) {
+		String regex = "^\\W*(?:\\w+\\b\\W*){0,"+length+"}$";
+		return Pattern.compile(regex).matcher(str).matches();
 	}
 	
-	public Boolean isValidPhoneNumber(String phoneNumber) {
-		StringBuilder regex = new StringBuilder();
-		regex.append("^(\\d{10})|(([\\(]?([0-9]{3})[\\)]?)?[ \\.\\-]?([0-9]{3})[ \\.\\-]([0-9]{4}))$");
-		return Pattern.compile(regex.toString()).matcher(phoneNumber).matches();
+	/*
+	 * \A          # Assert position at the beginning of the string.
+     * (?>         # Group but don't capture or keep backtracking positions:
+     * [^\r\n]*    # Match zero or more characters except CR and LF.
+     * (?>         # Group but don't capture or keep backtracking positions:
+     * \r\n?       # Match a CR, with an optional following LF (CRLF).
+     * |           # Or:
+     * \n          # Match a standalone LF character.
+     * )           # End the noncapturing, atomic group.
+     * ){0,4}      # End group; repeat between zero and four times.
+     * [^\r\n]*    # Match zero or more characters except CR and LF.
+     * \z          # Assert position at the end of the string.
+
+
+	 CR : Carriage Return (\r\n)
+	 LF : Line Feed (\n)
+	 */
+	public static Boolean isValidLines(String str, int length) {
+		String regex = "\\A(?>[^\r\n]*(?>\r\n?|\n)){0,"+length+"}[^\r\n]*\\z";
+		return Pattern.compile(regex).matcher(str).matches();
 	}
 	
-	// strip off html tags
-	public String stripHtmlTag(String element) {
-		return element.replaceAll("<(.|\\n)+?>", "");
-	}
 	
 }
