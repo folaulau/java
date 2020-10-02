@@ -94,6 +94,7 @@ public class Main {
         DB_CONNECTION = DBConnection.INSTANCE.getConnection();
         Statement stmt = null;
         try {
+            DB_CONNECTION.setAutoCommit(false);
             stmt = DB_CONNECTION.createStatement();
         } catch (SQLException e) {
             System.out.println("SQLException, msg=" + e.getLocalizedMessage());
@@ -114,9 +115,18 @@ public class Main {
                 stmt.executeUpdate(query.toString());
 
             }
+            DB_CONNECTION.commit();
         } catch (SQLException e) {
             System.out.println("SQLException, msg=" + e.getLocalizedMessage());
+
             e.printStackTrace();
+
+            try {
+                DB_CONNECTION.rollback();
+            } catch (SQLException e1) {
+                // TODO Auto-generated catch block
+                e1.printStackTrace();
+            }
         }
 
         System.out.println(TABLE_NAME + " table has been populated with " + NUMBER_OF_USERS + " rows!\n\n");
@@ -127,6 +137,7 @@ public class Main {
         DB_CONNECTION = DBConnection.INSTANCE.getConnection();
         Statement stmt = null;
         try {
+            DB_CONNECTION.setAutoCommit(false);
             stmt = DB_CONNECTION.createStatement();
         } catch (SQLException e) {
             System.out.println("SQLException, msg=" + e.getLocalizedMessage());
@@ -142,9 +153,19 @@ public class Main {
             query.append("WHERE id = " + selectedId + "; ");
             System.out.println("SQL QUERY: " + query.toString());
             stmt.executeUpdate(query.toString());
+
+            DB_CONNECTION.commit();
         } catch (SQLException e) {
             System.out.println("SQLException, msg=" + e.getLocalizedMessage());
             e.printStackTrace();
+
+            try {
+                DB_CONNECTION.rollback();
+            } catch (SQLException e1) {
+                // TODO Auto-generated catch block
+                e1.printStackTrace();
+            }
+
         }
 
         System.out.println(TABLE_NAME + " table has been updated for row with id=" + selectedId + "!\n\n");
