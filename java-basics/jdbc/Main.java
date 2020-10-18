@@ -111,7 +111,7 @@ public class Main {
                 /**
                  * Use prepareStatement to insert data into the query and avoid SQL injection
                  */
-                PreparedStatement pStmnt = DB_CONNECTION.prepareStatement(query.toString());
+                PreparedStatement pStmnt = DB_CONNECTION.prepareStatement(query.toString(), Statement.RETURN_GENERATED_KEYS);
                 String firstName = ConstantUtils.getRandomFirstname();
                 String lastName = ConstantUtils.getRandomLastname();
                 int age = RandomGeneratorUtils.getIntegerWithin(1, 51);
@@ -123,7 +123,17 @@ public class Main {
                 System.out.println("parameter 2: " + lastName);
                 System.out.println("parameter 3: " + age);
 
-                pStmnt.executeUpdate();
+                int numOfRowsCreated = pStmnt.executeUpdate();
+
+                if (numOfRowsCreated > 0) {
+                    int id = 0;
+                    ResultSet rs = pStmnt.getGeneratedKeys();
+                    if (rs.next()) {
+                        id = rs.getInt(1);
+                    }
+                    System.out.println("new id: " + id);
+                }
+
             }
 
             DB_CONNECTION.commit();
@@ -138,6 +148,7 @@ public class Main {
                 // TODO Auto-generated catch block
                 e1.printStackTrace();
             }
+        } finally {
         }
 
         System.out.println(TABLE_NAME + " table has been populated with " + NUMBER_OF_USERS + " rows!\n\n");
@@ -203,6 +214,9 @@ public class Main {
             System.out.println("SQLException, msg=" + e.getLocalizedMessage());
             e.printStackTrace();
         }
+
+        ResultSet rs = null;
+        PreparedStatement pStmnt = null;
         // Read user
         try {
             StringBuilder query = new StringBuilder();
@@ -211,11 +225,11 @@ public class Main {
             query.append("WHERE id = ? ");
             System.out.println("SQL QUERY: " + query.toString());
 
-            PreparedStatement pStmnt = DB_CONNECTION.prepareStatement(query.toString());
+            pStmnt = DB_CONNECTION.prepareStatement(query.toString());
             pStmnt.setInt(1, selectedId);
             System.out.println("parameter 1: " + selectedId);
 
-            ResultSet rs = pStmnt.executeQuery();
+            rs = pStmnt.executeQuery();
             DB_CONNECTION.commit();
 
             rs.next();
@@ -226,6 +240,18 @@ public class Main {
         } catch (SQLException e) {
             System.out.println("SQLException, msg=" + e.getLocalizedMessage());
             e.printStackTrace();
+        } finally {
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+
+                if (pStmnt != null) {
+                    pStmnt.close();
+                }
+            } catch (SQLException e) {
+                System.out.println(e.getMessage());
+            }
         }
 
         System.out.println("Row with id=" + selectedId + " has been retrived from " + TABLE_NAME + ".\n\n");
