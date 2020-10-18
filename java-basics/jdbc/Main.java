@@ -1,4 +1,5 @@
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -92,10 +93,8 @@ public class Main {
     public static void insertDataToTable() {
         System.out.println("inserting data into " + TABLE_NAME + " table...");
         DB_CONNECTION = DBConnection.INSTANCE.getConnection();
-        Statement stmt = null;
         try {
             DB_CONNECTION.setAutoCommit(false);
-            stmt = DB_CONNECTION.createStatement();
         } catch (SQLException e) {
             System.out.println("SQLException, msg=" + e.getLocalizedMessage());
             e.printStackTrace();
@@ -106,15 +105,27 @@ public class Main {
             for (int i = 0; i < NUMBER_OF_USERS; i++) {
                 StringBuilder query = new StringBuilder();
                 query.append("INSERT INTO user (first_name, last_name, age) ");
-                query.append("VALUES ( ");
-                query.append("'" + ConstantUtils.getRandomFirstname() + "', ");
-                query.append("'" + ConstantUtils.getRandomLastname() + "', ");
-                query.append(RandomGeneratorUtils.getIntegerWithin(1, 51));
-                query.append("); ");
+                query.append("VALUES (?, ?, ?); ");
                 System.out.println("SQL QUERY: " + query.toString());
-                stmt.executeUpdate(query.toString());
 
+                /**
+                 * Use prepareStatement to insert data into the query and avoid SQL injection
+                 */
+                PreparedStatement pStmnt = DB_CONNECTION.prepareStatement(query.toString());
+                String firstName = ConstantUtils.getRandomFirstname();
+                String lastName = ConstantUtils.getRandomLastname();
+                int age = RandomGeneratorUtils.getIntegerWithin(1, 51);
+                pStmnt.setString(1, firstName);
+                pStmnt.setString(2, lastName);
+                pStmnt.setInt(3, age);
+
+                System.out.println("parameter 1: " + firstName);
+                System.out.println("parameter 2: " + lastName);
+                System.out.println("parameter 3: " + age);
+
+                pStmnt.executeUpdate();
             }
+
             DB_CONNECTION.commit();
         } catch (SQLException e) {
             System.out.println("SQLException, msg=" + e.getLocalizedMessage());
@@ -135,10 +146,8 @@ public class Main {
     public static void updateDataInTable(int selectedId) {
         System.out.println("updating data in " + TABLE_NAME + " table...");
         DB_CONNECTION = DBConnection.INSTANCE.getConnection();
-        Statement stmt = null;
         try {
             DB_CONNECTION.setAutoCommit(false);
-            stmt = DB_CONNECTION.createStatement();
         } catch (SQLException e) {
             System.out.println("SQLException, msg=" + e.getLocalizedMessage());
             e.printStackTrace();
@@ -148,11 +157,24 @@ public class Main {
         try {
             StringBuilder query = new StringBuilder();
             query.append("UPDATE user ");
-            query.append("SET first_name = 'Folau' ");
-            query.append(", age = " + RandomGeneratorUtils.getIntegerWithin(1, 51) + " ");
-            query.append("WHERE id = " + selectedId + "; ");
+            query.append("SET first_name = ? ");
+            query.append(", age = ? ");
+            query.append("WHERE id = ? ");
             System.out.println("SQL QUERY: " + query.toString());
-            stmt.executeUpdate(query.toString());
+
+            PreparedStatement pStmnt = DB_CONNECTION.prepareStatement(query.toString());
+            int age = RandomGeneratorUtils.getIntegerWithin(1, 51);
+            String firstName = "Folau";
+
+            pStmnt.setString(1, firstName);
+            pStmnt.setInt(2, age);
+            pStmnt.setInt(3, selectedId);
+
+            System.out.println("parameter 1: " + firstName);
+            System.out.println("parameter 2: " + age);
+            System.out.println("parameter 3: " + selectedId);
+
+            pStmnt.executeUpdate();
 
             DB_CONNECTION.commit();
         } catch (SQLException e) {
@@ -174,33 +196,33 @@ public class Main {
     public static void readDataFromTable(int selectedId) {
         System.out.println("reading data from " + TABLE_NAME + " table...");
         DB_CONNECTION = DBConnection.INSTANCE.getConnection();
-        Statement stmt = null;
+
         try {
-            stmt = DB_CONNECTION.createStatement();
+            DB_CONNECTION.setAutoCommit(false);
         } catch (SQLException e) {
             System.out.println("SQLException, msg=" + e.getLocalizedMessage());
             e.printStackTrace();
         }
-
         // Read user
         try {
             StringBuilder query = new StringBuilder();
             query.append("SELECT id, first_name, last_name, age ");
             query.append("FROM user ");
-            query.append("WHERE id = " + selectedId + "; ");
+            query.append("WHERE id = ? ");
             System.out.println("SQL QUERY: " + query.toString());
-            ResultSet rs = stmt.executeQuery(query.toString());
+
+            PreparedStatement pStmnt = DB_CONNECTION.prepareStatement(query.toString());
+            pStmnt.setInt(1, selectedId);
+            System.out.println("parameter 1: " + selectedId);
+
+            ResultSet rs = pStmnt.executeQuery();
+            DB_CONNECTION.commit();
+
             rs.next();
 
-            int id = rs.getInt("id");
-            String firstName = rs.getString("first_name");
-            String lastName = rs.getString("last_name");
-            int age = rs.getInt("age");
+            User user = User.generateUserFromResultset(rs);
+            System.out.println(user.toString());
 
-            System.out.println("id=" + id);
-            System.out.println("firstName=" + firstName);
-            System.out.println("lastName=" + lastName);
-            System.out.println("age=" + age);
         } catch (SQLException e) {
             System.out.println("SQLException, msg=" + e.getLocalizedMessage());
             e.printStackTrace();
