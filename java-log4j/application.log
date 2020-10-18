@@ -1,0 +1,71 @@
+2020-10-18 01:16:46 DEBUG MainLog:13 - Log4j appender configuration is successful !!
+2020-10-18 01:18:22 DEBUG MainLog:13 - Debug Message Logged !!!
+2020-10-18 01:18:22 INFO  MainLog:14 - Info Message Logged !!!
+2020-10-18 01:18:22 ERROR MainLog:15 - Error Message Logged !!!
+2020-10-18 01:19:10 DEBUG MainLog:14 - Debug Message Logged !!!
+2020-10-18 01:19:10 INFO  MainLog:15 - Info Message Logged !!!
+2020-10-18 01:19:10 ERROR MainLog:16 - Error Message Logged !!!
+2020-10-18 01:32:43 DEBUG MainLog:15 - Debug Message Logged !!!
+2020-10-18 01:32:43 INFO  MainLog:16 - Info Message Logged !!!
+2020-10-18 01:32:43 ERROR MainLog:17 - Error Message Logged !!!
+2020-10-18 01:32:43 FATAL MainLog:18 - Fatal Message Logged !!!
+2020-10-18 01:33:05 TRACE MainLog:14 - Trace Message Logged !!!
+2020-10-18 01:33:05 DEBUG MainLog:15 - Debug Message Logged !!!
+2020-10-18 01:33:05 INFO  MainLog:16 - Info Message Logged !!!
+2020-10-18 01:33:05 ERROR MainLog:17 - Error Message Logged !!!
+2020-10-18 01:33:05 FATAL MainLog:18 - Fatal Message Logged !!!
+2020-10-18 01:36:36 TRACE MainLog:16 - Trace Message Logged !!!
+2020-10-18 01:36:36 DEBUG MainLog:17 - Debug Message Logged !!!
+2020-10-18 01:36:36 INFO  MainLog:18 - Info Message Logged !!!
+2020-10-18 01:36:36 ERROR MainLog:19 - Error Message Logged !!!
+2020-10-18 01:36:36 FATAL MainLog:20 - Fatal Message Logged !!!
+2020-10-18 01:37:31 TRACE MainLog:16 - Trace Message Logged !!!
+2020-10-18 01:37:31 DEBUG MainLog:17 - Debug Message Logged !!!
+2020-10-18 01:37:31 INFO  MainLog:18 - Info Message Logged !!!
+2020-10-18 01:37:31 ERROR MainLog:19 - Error Message Logged !!!
+2020-10-18 01:37:31 FATAL MainLog:20 - Fatal Message Logged !!!
+2020-10-18 01:39:12 TRACE MainLog:16 - Trace Message Logged !!!
+2020-10-18 01:39:12 DEBUG MainLog:17 - Debug Message Logged !!!
+2020-10-18 01:39:12 INFO  MainLog:18 - Info Message Logged !!!
+2020-10-18 01:39:12 ERROR MainLog:19 - Error Message Logged !!!
+2020-10-18 01:39:12 FATAL MainLog:20 - Fatal Message Logged !!!
+2020-10-18 01:39:50 TRACE MainLog:16 - Trace Message Logged !!!
+2020-10-18 01:39:50 DEBUG MainLog:17 - Debug Message Logged !!!
+2020-10-18 01:39:50 INFO  MainLog:18 - Info Message Logged !!!
+2020-10-18 01:39:50 ERROR MainLog:19 - Error Message Logged !!!
+2020-10-18 01:39:50 FATAL MainLog:20 - Fatal Message Logged !!!
+2020-10-18 01:40:10 TRACE MainLog:16 - Trace Message Logged !!!
+2020-10-18 01:40:10 DEBUG MainLog:17 - Debug Message Logged !!!
+2020-10-18 01:40:10 INFO  MainLog:18 - Info Message Logged !!!
+2020-10-18 01:40:10 ERROR MainLog:19 - Error Message Logged !!!
+2020-10-18 01:40:10 FATAL MainLog:20 - Fatal Message Logged !!!
+[date: 2020-10-18 01:42:01] [memberUuid: ] [priority: TRACE] [class&line: lovemesomecoding.MainLog:16] [msg: Trace Message Logged !!!]
+[date: 2020-10-18 01:42:01] [memberUuid: ] [priority: DEBUG] [class&line: lovemesomecoding.MainLog:17] [msg: Debug Message Logged !!!]
+[date: 2020-10-18 01:42:01] [memberUuid: ] [priority: INFO ] [class&line: lovemesomecoding.MainLog:18] [msg: Info Message Logged !!!]
+[date: 2020-10-18 01:42:01] [memberUuid: ] [priority: ERROR] [class&line: lovemesomecoding.MainLog:19] [msg: Error Message Logged !!!]
+[date: 2020-10-18 01:42:01] [memberUuid: ] [priority: FATAL] [class&line: lovemesomecoding.MainLog:20] [msg: Fatal Message Logged !!!]
+[date: 2020-10-18 01:42:20] [memberUuid: ] [priority: TRACE] [class&line: lovemesomecoding.MainLog:16] [msg: Trace Message Logged !!!]
+[date: 2020-10-18 01:42:20] [memberUuid: ] [priority: DEBUG] [class&line: lovemesomecoding.MainLog:17] [msg: Debug Message Logged !!!]
+[date: 2020-10-18 01:42:20] [memberUuid: ] [priority: INFO ] [class&line: lovemesomecoding.MainLog:18] [msg: Info Message Logged !!!]
+[date: 2020-10-18 01:42:20] [memberUuid: ] [priority: ERROR] [class&line: lovemesomecoding.MainLog:19] [msg: Error Message Logged !!!]
+[date: 2020-10-18 01:42:20] [memberUuid: ] [priority: FATAL] [class&line: lovemesomecoding.MainLog:20] [msg: Fatal Message Logged !!!]
+[date: 2020-10-18 01:44:48] [memberUuid: ] [priority: TRACE] [class&line: lovemesomecoding.MainLog:16] [msg: Trace Message Logged !!!]
+[date: 2020-10-18 01:44:48] [memberUuid: ] [priority: DEBUG] [class&line: lovemesomecoding.MainLog:17] [msg: Debug Message Logged !!!]
+[date: 2020-10-18 01:44:48] [memberUuid: ] [priority: INFO ] [class&line: lovemesomecoding.MainLog:18] [msg: Info Message Logged !!!]
+[date: 2020-10-18 01:44:48] [memberUuid: ] [priority: ERROR] [class&line: lovemesomecoding.MainLog:19] [msg: Error Message Logged !!!]
+[date: 2020-10-18 01:44:48] [memberUuid: ] [priority: FATAL] [class&line: lovemesomecoding.MainLog:20] [msg: Fatal Message Logged !!!]
+[date: 2020-10-18 01:50:20] [memberUuid: ] [priority: lovemesomecoding.MainLoglr(TRACE)] [class&line: lovemesomecoding.MainLog:16] [msg: Trace Message Logged !!!]
+[date: 2020-10-18 01:50:20] [memberUuid: ] [priority: lovemesomecoding.MainLoglr(DEBUG)] [class&line: lovemesomecoding.MainLog:17] [msg: Debug Message Logged !!!]
+[date: 2020-10-18 01:50:20] [memberUuid: ] [priority: lovemesomecoding.MainLoglr(INFO )] [class&line: lovemesomecoding.MainLog:18] [msg: Info Message Logged !!!]
+[date: 2020-10-18 01:50:20] [memberUuid: ] [priority: lovemesomecoding.MainLoglr(ERROR)] [class&line: lovemesomecoding.MainLog:19] [msg: Error Message Logged !!!]
+[date: 2020-10-18 01:50:20] [memberUuid: ] [priority: lovemesomecoding.MainLoglr(FATAL)] [class&line: lovemesomecoding.MainLog:20] [msg: Fatal Message Logged !!!]
+[date: 2020-10-18 01:51:16] [memberUuid: ] [priority: lovemesomecoding.MainLoglr(TRACE)] [class&line: lovemesomecoding.MainLog:16] [msg: Trace Message Logged !!!]
+[date: 2020-10-18 01:51:16] [memberUuid: ] [priority: lovemesomecoding.MainLoglr(DEBUG)] [class&line: lovemesomecoding.MainLog:17] [msg: Debug Message Logged !!!]
+[date: 2020-10-18 01:51:16] [memberUuid: ] [priority: lovemesomecoding.MainLoglr(INFO )] [class&line: lovemesomecoding.MainLog:18] [msg: Info Message Logged !!!]
+[date: 2020-10-18 01:51:16] [memberUuid: ] [priority: lovemesomecoding.MainLoglr(ERROR)] [class&line: lovemesomecoding.MainLog:19] [msg: Error Message Logged !!!]
+[date: 2020-10-18 01:51:16] [memberUuid: ] [priority: lovemesomecoding.MainLoglr(FATAL)] [class&line: lovemesomecoding.MainLog:20] [msg: Fatal Message Logged !!!]
+[date: 2020-10-18 01:58:20] [priority: TRACE] [thread: main] [memberUuid: ]  [class&line: lovemesomecoding.MainLog.main:16] [msg: Trace Message Logged !!!]
+[date: 2020-10-18 01:58:20] [priority: DEBUG] [thread: main] [memberUuid: ]  [class&line: lovemesomecoding.MainLog.main:17] [msg: Debug Message Logged !!!]
+[date: 2020-10-18 01:58:20] [priority: INFO ] [thread: main] [memberUuid: ]  [class&line: lovemesomecoding.MainLog.main:18] [msg: Info Message Logged !!!]
+[date: 2020-10-18 01:58:20] [priority: ERROR] [thread: main] [memberUuid: ]  [class&line: lovemesomecoding.MainLog.main:19] [msg: Error Message Logged !!!]
+[date: 2020-10-18 01:58:20] [priority: FATAL] [thread: main] [memberUuid: ]  [class&line: lovemesomecoding.MainLog.main:20] [msg: Fatal Message Logged !!!]
