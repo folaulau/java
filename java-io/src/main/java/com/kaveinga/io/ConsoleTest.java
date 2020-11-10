@@ -2,7 +2,7 @@ package com.kaveinga.io;
 
 import java.io.Console;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class ConsoleTest {
 	
