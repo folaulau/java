@@ -16,15 +16,20 @@ public class User implements Serializable {
     private String            uuid;
 
     public User() {
-        this(null, null, null);
+        this(null, null, null, null);
+    }
+    
+    public User(String uuid) {
+        this(null, null, null, uuid);
     }
 
-    public User(String firstName, String lastName, String email) {
+    public User(String firstName, String lastName, String email, String uuid) {
         super();
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
-        this.uuid = "user-" + UUID.randomUUID().toString();
+
+        this.uuid = (uuid == null || uuid.length() == 0) ? "user-" + UUID.randomUUID().toString() : uuid;
     }
 
     public String getFirstName() {
