@@ -22,6 +22,13 @@ public class RecursionMain {
 
         fibonacciOf = fibonacciWithLoop(9);
         System.out.println("fibonacci: " + fibonacciOf);
+
+        int total = sum(5);
+        System.out.println("sum: " + total);
+
+        total = sumWithLoop(5);
+
+        System.out.println("sum: " + total);
     }
 
     /**
@@ -92,5 +99,28 @@ public class RecursionMain {
         }
 
         return indexNumber;
+    }
+
+    private static int sum(int num) {
+
+        /**
+         * base case
+         */
+        if (num <= 0) {
+            return 0;
+        }
+
+        /**
+         * recursive case
+         */
+        return num + sum(num - 1);
+    }
+
+    private static int sumWithLoop(int num) {
+        int total = 0;
+        for (int i = 0; i <= num; i++) {
+            total += i;
+        }
+        return total;
     }
 }
