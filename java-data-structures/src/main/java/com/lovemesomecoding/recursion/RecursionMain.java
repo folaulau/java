@@ -1,5 +1,8 @@
 package com.lovemesomecoding.recursion;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class RecursionMain {
 
     /**
@@ -12,23 +15,29 @@ public class RecursionMain {
     public static void main(String[] args) {
 
         int factorialOf = factorial(9);
-        System.out.println("factorialOf: " + factorialOf);
+        System.out.println("factorialOf of 9: " + factorialOf);
 
         factorialOf = factorialWithLoop(9);
-        System.out.println("factorialOf: " + factorialOf);
+        System.out.println("factorialWithLoop with 9: " + factorialOf);
 
         int fibonacciOf = fibonacci(9);
-        System.out.println("fibonacci: " + fibonacciOf);
+        System.out.println("fibonacci of 9: " + fibonacciOf);
+
+        fibonacciOf = fibonacciWithCache(new HashMap<>(), 9);
+        System.out.println("fibonacciWithCache of 9: " + fibonacciOf);
+
+        fibonacciOf = fibonacciWithTabulation(9);
+        System.out.println("fibonacciWithTabulation of 9: " + fibonacciOf);
 
         fibonacciOf = fibonacciWithLoop(9);
-        System.out.println("fibonacci: " + fibonacciOf);
+        System.out.println("fibonacciWithLoop of 9: " + fibonacciOf);
 
         int total = sum(5);
-        System.out.println("sum: " + total);
+        System.out.println("sum of 5: " + total);
 
         total = sumWithLoop(5);
 
-        System.out.println("sum: " + total);
+        System.out.println("sumWithLoop of 5: " + total);
     }
 
     /**
@@ -81,24 +90,100 @@ public class RecursionMain {
         return number1 + number2;
     }
 
+    /**
+     * Dynamic Programming with Tabulation<br>
+     */
     private static int fibonacciWithLoop(int num) {
-        int indexNumber = 0;
+
+        if (num <= 0) {
+            return 0;
+        }
+
+        /**
+         * first and second case are pre-computed
+         */
+        /*
+         * first case
+         */
         int number1 = 0;
+        /*
+         * second case
+         */
         int number2 = 1;
+
         int sum = 0;
 
-        for (int i = 0; i < num; i++) {
+        for (int i = 2; i <= num; i++) {
 
             sum = number1 + number2;
+
+            System.out.println(number1 + "+" + number2 + " = " + sum);
 
             number1 = number2;
             number2 = sum;
 
-            indexNumber = sum;
+        }
+
+        return sum;
+    }
+
+    /**
+     * Dynamic Programming with Tabulation<br>
+     */
+    private static int fibonacciWithTabulation(int num) {
+
+        if (num <= 0) {
+            return 0;
+        }
+
+        int storage[] = new int[num + 1];
+
+        /**
+         * first and second case are pre-computed
+         */
+        /*
+         * first case
+         */
+        storage[0] = 0;
+        /*
+         * second case
+         */
+        storage[1] = 1;
+
+        for (int i = 2; i <= num; i++) {
+
+            storage[i] = storage[i - 1] + storage[i - 2];
+
+            System.out.println(storage[i - 1] + "+" + storage[i - 2] + " = " + storage[i]);
 
         }
 
-        return indexNumber;
+        return storage[num];
+    }
+
+    /**
+     * Dynamic Programming with Memoization<br>
+     * storage can be a map, array, or list depending on your situation.
+     */
+    private static int fibonacciWithCache(Map<Integer, Integer> storage, int num) {
+        if (num <= 1) {
+            return num;
+        }
+
+        if (storage.containsKey(num)) {
+            return storage.get(num);
+        }
+
+        int number1 = fibonacciWithCache(storage, num - 1);
+        int number2 = fibonacciWithCache(storage, num - 2);
+
+        int result = number1 + number2;
+        
+        System.out.println(number1 + "+" + number2 + " = " + result);
+
+        storage.put(num, result);
+
+        return result;
     }
 
     private static int sum(int num) {
