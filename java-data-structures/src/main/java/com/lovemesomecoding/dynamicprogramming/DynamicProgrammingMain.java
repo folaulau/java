@@ -13,11 +13,28 @@ public class DynamicProgrammingMain {
      */
 
     public static void main(String[] args) {
-        int fibonacciOf = fibonacciWithCache(new HashMap<>(), 9);
-        System.out.println("fibonacciWithCache of 9: " + fibonacciOf);
+        int num = 9;
+        int fibonacciOf = fibonacci(num);
+        System.out.println("fibonacci of "+num+": " + fibonacciOf);
+        
+        fibonacciOf = fibonacciWithCache(new HashMap<>(), num);
+        System.out.println("fibonacciWithCache of "+num+": " + fibonacciOf);
 
-        fibonacciOf = fibonacciWithTabulation(9);
-        System.out.println("fibonacciWithTabulation of 9: " + fibonacciOf);
+        fibonacciOf = fibonacciWithTabulation(num);
+        System.out.println("fibonacciWithTabulation of "+num+": " + fibonacciOf);
+    }
+
+    private static int fibonacci(int num) {
+        if (num <= 1) {
+            return num;
+        }
+        int number1 = fibonacci(num - 1);
+        int number2 = fibonacci(num - 2);
+        
+        int result = number1 + number2;
+
+        System.out.println("num: " + num + " - " + number1 + "+" + number2 + " = " + result);
+        return result;
     }
 
     /**
@@ -72,7 +89,7 @@ public class DynamicProgrammingMain {
 
         int result = number1 + number2;
 
-        System.out.println(number1 + "+" + number2 + " = " + result);
+        System.out.println("num: " + num + " - " + number1 + "+" + number2 + " = " + result);
 
         storage.put(num, result);
 

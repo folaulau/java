@@ -14,24 +14,26 @@ public class RecursionMain {
 
     public static void main(String[] args) {
 
-        int factorialOf = factorial(9);
-        System.out.println("factorialOf of 9: " + factorialOf);
+        int num = 9;
+        
+        int factorialOf = factorial(num);
+        System.out.println("factorialOf of "+num+": " + factorialOf);
 
-        factorialOf = factorialWithLoop(9);
-        System.out.println("factorialWithLoop with 9: " + factorialOf);
+        factorialOf = factorialWithLoop(num);
+        System.out.println("factorialWithLoop with "+num+": " + factorialOf);
 
         int fibonacciOf = fibonacci(9);
-        System.out.println("fibonacci of 9: " + fibonacciOf);
+        System.out.println("fibonacci of "+num+": " + fibonacciOf);
 
-        fibonacciOf = fibonacciWithLoop(9);
-        System.out.println("fibonacciWithLoop of 9: " + fibonacciOf);
+        fibonacciOf = fibonacciWithLoop(num);
+        System.out.println("fibonacciWithLoop of "+num+": " + fibonacciOf);
 
-        int total = sum(5);
-        System.out.println("sum of 5: " + total);
+        int total = sum(num);
+        System.out.println("sum of "+num+": " + total);
 
-        total = sumWithLoop(5);
+        total = sumWithLoop(num);
 
-        System.out.println("sumWithLoop of 5: " + total);
+        System.out.println("sumWithLoop of "+num+": " + total);
     }
 
     /**
