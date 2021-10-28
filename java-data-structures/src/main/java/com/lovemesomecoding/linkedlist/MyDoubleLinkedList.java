@@ -5,13 +5,13 @@ import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
 @Data
-public class MySingleLinkedList {
+public class MyDoubleLinkedList {
 
-    int                size = 0;
+    int          size = 0;
 
-    private SingleNode head;
+    private DoubleNode head;
 
-    public MySingleLinkedList(SingleNode head) {
+    public MyDoubleLinkedList(DoubleNode head) {
         append(head);
     }
 
@@ -20,23 +20,21 @@ public class MySingleLinkedList {
      * 1. If the Linked List is empty then we simply, add the new Node as the Head of the Linked List.<br>
      * 2. If the Linked List is not empty then we find the last node, and make it' next to the new Node, hence making
      * the new node the last Node.
-     * 
-     * Time complexity of append is O(n) where n is the number of nodes in the linked list. Since there is a loop from
-     * head to end, the function does O(n) work. This method can also be optimized to work in O(1) by keeping an extra
-     * pointer to the tail of the linked list.
      */
-    public void append(SingleNode node) {
+    public void append(DoubleNode node) {
         if (node == null) {
             return;
         }
         if (this.head == null) {
             this.head = node;
         } else {
-            SingleNode currentNode = this.head;
+            DoubleNode currentNode = this.head;
             while (currentNode.getNext() != null) {
                 currentNode = currentNode.getNext();
             }
+            
             currentNode.setNext(node);
+            node.setPrev(currentNode);
         }
         size++;
     }
@@ -51,7 +49,7 @@ public class MySingleLinkedList {
      * new List) or the pointer to the first Node of the List.<br>
      * 6. The previous Head Node is now the second Node of Linked List, because the new Node is added at the front.<br>
      */
-    public void prepend(SingleNode node) {
+    public void prepend(DoubleNode node) {
         if (node == null) {
             return;
         }
@@ -67,15 +65,15 @@ public class MySingleLinkedList {
     /**
      * add at position of list
      */
-    public void add(int index, SingleNode node) {
+    public void add(int index, DoubleNode node) {
         if (node == null) {
             return;
         }
 
         int count = 0;
 
-        SingleNode previous = null;
-        SingleNode currentNode = this.head;
+        DoubleNode previous = null;
+        DoubleNode currentNode = this.head;
 
         while (currentNode.getNext() != null) {
 
@@ -121,7 +119,7 @@ public class MySingleLinkedList {
         if (this.head == null) {
             return false;
         } else {
-            SingleNode currentNode = this.head;
+            DoubleNode currentNode = this.head;
 
             /**
              * if email not found, keep checking the next node<br>
@@ -146,7 +144,7 @@ public class MySingleLinkedList {
     /**
      * get node on index
      */
-    public SingleNode get(int index) {
+    public DoubleNode get(int index) {
         if (index < 0 || index >= size) {
             throw new IllegalArgumentException("index out of bounds");
         }
@@ -156,7 +154,7 @@ public class MySingleLinkedList {
 
         int count = 0;
 
-        SingleNode currentNode = this.head;
+        DoubleNode currentNode = this.head;
 
         while (currentNode.getNext() != null) {
             currentNode = currentNode.getNext();
@@ -186,9 +184,9 @@ public class MySingleLinkedList {
 
         int count = 0;
 
-        SingleNode previous = null;
-        SingleNode currentNode = this.head;
-        SingleNode next = null;
+        DoubleNode previous = null;
+        DoubleNode currentNode = this.head;
+        DoubleNode next = null;
 
         while (currentNode.getNext() != null) {
 
@@ -208,6 +206,7 @@ public class MySingleLinkedList {
             this.head = this.head.getNext();
         } else {
             previous.setNext(next);
+            next.setPrev(previous);
         }
 
     }
@@ -231,18 +230,20 @@ public class MySingleLinkedList {
         }
 
         int count = 0;
-        SingleNode node = this.head;
+        DoubleNode node = this.head;
         while (node != null) {
-            System.out.println("index: " + count);
-            System.out.println("data: " + node.getData().toString());
+            System.out.println("index: "+count);
+            System.out.println("prev: " + ((node.getPrev()!=null) ? node.getPrev().getData().toString() : ""));
+            System.out.println("current: " + node.getData().toString());
+            System.out.println("next: " + ((node.getNext()!=null) ? node.getNext().getData().toString() : ""));
             node = node.getNext();
-
+            
             if (node == null) {
                 System.out.println("end of list\n");
             }
-
+            
             System.out.println("\n");
-
+            
             count++;
         }
     }

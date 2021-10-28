@@ -5,16 +5,15 @@ import lombok.ToString;
 
 @ToString
 @Data
-public class Node {
+public class SingleNode {
 
     private Customer data;
-    private Node     next;
 
-    public Node(Customer data) {
+    public SingleNode(Customer data) {
         this(data, null);
     }
 
-    public Node(Customer data, Node next) {
+    public SingleNode(Customer data, SingleNode next) {
         this.data = data;
         this.next = next;
     }
