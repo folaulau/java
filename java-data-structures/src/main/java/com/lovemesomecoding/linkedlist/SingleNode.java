@@ -8,6 +8,7 @@ import lombok.ToString;
 public class SingleNode {
 
     private Customer data;
+    private SingleNode     next;
 
     public SingleNode(Customer data) {
         this(data, null);
