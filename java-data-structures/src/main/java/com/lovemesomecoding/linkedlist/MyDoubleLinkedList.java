@@ -246,6 +246,35 @@ public class MyDoubleLinkedList {
 
     }
 
+    public void remove(DoubleNode node) {
+        if (node == null) {
+            return;
+        }
+
+        if (this.head.equals(node)) {
+            this.head = this.head.getNext();
+            this.head.setPrev(null);
+
+        } else if (this.tail.equals(node)) {
+
+            this.tail = this.tail.getPrev();
+            this.tail.setNext(null);
+        } else {
+            DoubleNode prev = node.getPrev();
+            DoubleNode next = node.getNext();
+
+            if (prev != null) {
+                prev.setNext(next);
+            }
+
+            if (next != null) {
+                next.setPrev(prev);
+            }
+
+        }
+
+    }
+
     /**
      * remove all<br>
      * set head to null
@@ -283,6 +312,6 @@ public class MyDoubleLinkedList {
 
             count++;
         }
-        
+
     }
 }

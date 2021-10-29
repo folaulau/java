@@ -11,9 +11,11 @@ public class LinkedListMain {
 
         // removeFromTop();
 
-        //removeFromBottom();
+        // removeFromBottom();
+        //
+        // removeFromIndex(2);
 
-        removeFromIndex();
+        removeNode();
 
         List<Customer> linkedList = new LinkedList<>();
     }
@@ -95,6 +97,7 @@ public class LinkedListMain {
     }
 
     static void removeFromTop() {
+
         DoubleNode head = new DoubleNode(new Customer("Folau", "Kaveinga", "folaudev@gmail.com"));
         MyDoubleLinkedList linkedList = new MyDoubleLinkedList(head);
         linkedList.append(new DoubleNode(new Customer("Lisa", "Kaveinga", "efinau10@gmail.com")));
@@ -103,12 +106,14 @@ public class LinkedListMain {
         linkedList.printList();
 
         System.out.println("Removing top from list");
+
         linkedList.remove(0);
         linkedList.printList();
 
     }
 
     static void removeFromBottom() {
+
         DoubleNode head = new DoubleNode(new Customer("Folau", "Kaveinga", "folaudev@gmail.com"));
         MyDoubleLinkedList linkedList = new MyDoubleLinkedList(head);
         linkedList.append(new DoubleNode(new Customer("Lisa", "Kaveinga", "efinau10@gmail.com")));
@@ -116,13 +121,15 @@ public class LinkedListMain {
         linkedList.prepend(new DoubleNode(new Customer("Kinga", "Kaveinga", "kinga@gmail.com")));
         linkedList.printList();
 
-        System.out.println("Removing bottom from list");
-        linkedList.remove(3);
+        System.out.println("Removing from bottom of list");
+
+        linkedList.remove(linkedList.getSize() - 1);
         linkedList.printList();
 
     }
 
-    static void removeFromIndex() {
+    static void removeFromIndex(int index) {
+
         DoubleNode head = new DoubleNode(new Customer("Folau", "Kaveinga", "folaudev@gmail.com"));
         MyDoubleLinkedList linkedList = new MyDoubleLinkedList(head);
         linkedList.append(new DoubleNode(new Customer("Lisa", "Kaveinga", "efinau10@gmail.com")));
@@ -130,8 +137,30 @@ public class LinkedListMain {
         linkedList.prepend(new DoubleNode(new Customer("Kinga", "Kaveinga", "kinga@gmail.com")));
         linkedList.printList();
 
-        System.out.println("Removing bottom from list");
-        linkedList.remove(2);
+        System.out.println("Removing from index(" + index + ") of list");
+
+        linkedList.remove(index);
+        linkedList.printList();
+
+    }
+
+    static void removeNode() {
+
+        DoubleNode head = new DoubleNode(new Customer("Folau", "Kaveinga", "folaudev@gmail.com"));
+        MyDoubleLinkedList linkedList = new MyDoubleLinkedList(head);
+        linkedList.append(new DoubleNode(new Customer("Lisa", "Kaveinga", "efinau10@gmail.com")));
+
+        linkedList.append(new DoubleNode(new Customer("Kinga", "Kaveinga", "kinga@gmail.com")));
+        
+        DoubleNode laulau = new DoubleNode(new Customer("Laulau", "Kaveinga", "folauetau@gmail.com"));
+
+        linkedList.append(laulau);
+        
+        linkedList.printList();
+
+        System.out.println("Removing " + laulau.getData().toString());
+
+        linkedList.remove(laulau);
         linkedList.printList();
 
     }
