@@ -10,6 +10,7 @@ public class MySingleLinkedList {
     int                size = 0;
 
     private SingleNode head;
+    private SingleNode tail;
 
     public MySingleLinkedList(SingleNode head) {
         append(head);
@@ -31,12 +32,10 @@ public class MySingleLinkedList {
         }
         if (this.head == null) {
             this.head = node;
+            this.tail = node;
         } else {
-            SingleNode currentNode = this.head;
-            while (currentNode.getNext() != null) {
-                currentNode = currentNode.getNext();
-            }
-            currentNode.setNext(node);
+            this.tail.setNext(node);
+            this.tail = node;
         }
         size++;
     }
@@ -74,8 +73,23 @@ public class MySingleLinkedList {
 
         int count = 0;
 
-        SingleNode previous = null;
         SingleNode currentNode = this.head;
+
+        if (this.head.equals(currentNode)) {
+            /*
+             * adding to the head
+             */
+            node.setNext(currentNode);
+            this.head = node;
+
+        } else if (this.tail.equals(currentNode)) {
+
+            this.tail.setNext(node);
+            this.tail = node;
+
+        }
+
+        SingleNode previous = null;
 
         while (currentNode.getNext() != null) {
 
@@ -90,16 +104,8 @@ public class MySingleLinkedList {
 
         }
 
-        if (this.head.equals(currentNode)) {
-            /*
-             * adding to the head
-             */
-            node.setNext(currentNode);
-            this.head = node;
-        } else {
-            node.setNext(currentNode);
-            previous.setNext(node);
-        }
+        node.setNext(currentNode);
+        previous.setNext(node);
 
         size++;
     }
@@ -150,25 +156,33 @@ public class MySingleLinkedList {
         if (index < 0 || index >= size) {
             throw new IllegalArgumentException("index out of bounds");
         }
+
         if (index == 0) {
+
             return this.head;
-        }
 
-        int count = 0;
+        } else if (index == (size - 1)) {
 
-        SingleNode currentNode = this.head;
+            return this.tail;
 
-        while (currentNode.getNext() != null) {
-            currentNode = currentNode.getNext();
+        } else {
 
-            count++;
+            int count = 0;
 
-            if (index == count) {
-                break;
+            SingleNode currentNode = this.head;
+
+            while (currentNode.getNext() != null) {
+                currentNode = currentNode.getNext();
+
+                count++;
+
+                if (index == count) {
+                    break;
+                }
+
             }
-
+            return currentNode;
         }
-        return currentNode;
 
     }
 
@@ -205,8 +219,16 @@ public class MySingleLinkedList {
         }
 
         if (currentNode.equals(this.head)) {
+
             this.head = this.head.getNext();
+
+        } else if (currentNode.equals(this.tail)) {
+
+            this.tail = previous;
+            previous.setNext(null);
+
         } else {
+
             previous.setNext(next);
         }
 
@@ -219,6 +241,7 @@ public class MySingleLinkedList {
 
     public void removeAll() {
         this.head = null;
+        this.tail = null;
     }
 
     /**
@@ -245,5 +268,6 @@ public class MySingleLinkedList {
 
             count++;
         }
+        System.out.println("tail: " + tail.getData().toString());
     }
 }

@@ -7,9 +7,10 @@ import lombok.NoArgsConstructor;
 @Data
 public class MyDoubleLinkedList {
 
-    int          size = 0;
+    int                size = 0;
 
     private DoubleNode head;
+    private DoubleNode tail;
 
     public MyDoubleLinkedList(DoubleNode head) {
         append(head);
@@ -27,14 +28,17 @@ public class MyDoubleLinkedList {
         }
         if (this.head == null) {
             this.head = node;
+            this.tail = node;
         } else {
             DoubleNode currentNode = this.head;
             while (currentNode.getNext() != null) {
                 currentNode = currentNode.getNext();
             }
-            
-            currentNode.setNext(node);
-            node.setPrev(currentNode);
+            // order doesn't matter, as long as the last operation is tail=node
+            this.tail.setNext(node);
+            node.setPrev(this.tail);
+            this.tail = node;
+
         }
         size++;
     }
@@ -56,6 +60,9 @@ public class MyDoubleLinkedList {
         if (this.head == null) {
             this.head = node;
         } else {
+
+            // order doesn't matter, as long as the last operation is head=node
+            this.head.setPrev(node);
             node.setNext(this.head);
             this.head = node;
         }
@@ -72,31 +79,38 @@ public class MyDoubleLinkedList {
 
         int count = 0;
 
-        DoubleNode previous = null;
         DoubleNode currentNode = this.head;
 
-        while (currentNode.getNext() != null) {
+        if (index == 0) {
 
-            if (index == count) {
-                break;
-            }
-
-            previous = currentNode;
-            currentNode = currentNode.getNext();
-
-            count++;
-
-        }
-
-        if (this.head.equals(currentNode)) {
-            /*
-             * adding to the head
-             */
             node.setNext(currentNode);
             this.head = node;
+
+        } else if (index == (size - 1)) {
+
+            this.tail.setNext(node);
+            this.tail = node;
+
         } else {
+
+            DoubleNode previous = null;
+
+            while (currentNode.getNext() != null) {
+
+                if (index == count) {
+                    break;
+                }
+
+                previous = currentNode;
+                currentNode = currentNode.getNext();
+
+                count++;
+
+            }
+
             node.setNext(currentNode);
             previous.setNext(node);
+
         }
 
         size++;
@@ -152,21 +166,32 @@ public class MyDoubleLinkedList {
             return this.head;
         }
 
-        int count = 0;
+        if (index == 0) {
 
-        DoubleNode currentNode = this.head;
+            return this.head;
 
-        while (currentNode.getNext() != null) {
-            currentNode = currentNode.getNext();
+        } else if (index == (size - 1)) {
 
-            count++;
+            return this.tail;
 
-            if (index == count) {
-                break;
+        } else {
+
+            int count = 0;
+
+            DoubleNode currentNode = this.head;
+
+            while (currentNode.getNext() != null) {
+                currentNode = currentNode.getNext();
+
+                count++;
+
+                if (index == count) {
+                    break;
+                }
+
             }
-
+            return currentNode;
         }
-        return currentNode;
 
     }
 
@@ -184,29 +209,39 @@ public class MyDoubleLinkedList {
 
         int count = 0;
 
-        DoubleNode previous = null;
-        DoubleNode currentNode = this.head;
-        DoubleNode next = null;
+        if (index == 0) {
 
-        while (currentNode.getNext() != null) {
+            this.head = this.head.getNext();
+            this.head.setPrev(null);
 
-            if (index == count) {
-                break;
+        } else if (index == (size - 1)) {
+
+            this.tail = this.tail.getPrev();
+            this.tail.setNext(null);
+
+        } else {
+
+            DoubleNode previous = null;
+            DoubleNode currentNode = this.head;
+            DoubleNode next = null;
+
+            while (currentNode.getNext() != null) {
+
+                if (index == count) {
+                    break;
+                }
+
+                previous = currentNode;
+                currentNode = currentNode.getNext();
+                next = currentNode.getNext();
+
+                count++;
+
             }
 
-            previous = currentNode;
-            currentNode = currentNode.getNext();
-            next = currentNode.getNext();
-
-            count++;
-
-        }
-
-        if (currentNode.equals(this.head)) {
-            this.head = this.head.getNext();
-        } else {
             previous.setNext(next);
             next.setPrev(previous);
+
         }
 
     }
@@ -218,6 +253,7 @@ public class MyDoubleLinkedList {
 
     public void removeAll() {
         this.head = null;
+        this.tail = null;
     }
 
     /**
@@ -232,18 +268,18 @@ public class MyDoubleLinkedList {
         int count = 0;
         DoubleNode node = this.head;
         while (node != null) {
-            System.out.println("index: "+count);
-            System.out.println("prev: " + ((node.getPrev()!=null) ? node.getPrev().getData().toString() : ""));
+            System.out.println("index: " + count);
+            System.out.println("prev: " + ((node.getPrev() != null) ? node.getPrev().getData().toString() : ""));
             System.out.println("current: " + node.getData().toString());
-            System.out.println("next: " + ((node.getNext()!=null) ? node.getNext().getData().toString() : ""));
+            System.out.println("next: " + ((node.getNext() != null) ? node.getNext().getData().toString() : ""));
             node = node.getNext();
-            
+
             if (node == null) {
                 System.out.println("end of list\n");
             }
-            
+
             System.out.println("\n");
-            
+
             count++;
         }
     }
