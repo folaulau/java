@@ -193,7 +193,7 @@ public class MySingleLinkedList {
      * 2. If the Node is in the middle somewhere, then find the Node before it, and make the Node before it point to the
      * Node next to it.<br>
      */
-    public void remove(int index) {
+    public void removeAt(int index) {
         if (index < 0 || index >= size) {
             throw new IllegalArgumentException("index out of bounds");
         }

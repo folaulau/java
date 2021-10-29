@@ -132,8 +132,12 @@ public class MyDoubleLinkedList {
         }
         if (this.head == null) {
             return false;
+        } else if (this.head.getData().getEmail().equals(email)) {
+            return true;
+        } else if (this.tail.getData().getEmail().equals(email)) {
+            return true;
         } else {
-            DoubleNode currentNode = this.head;
+            DoubleNode currentNode = this.head.getNext();
 
             /**
              * if email not found, keep checking the next node<br>
@@ -202,7 +206,7 @@ public class MyDoubleLinkedList {
      * 2. If the Node is in the middle somewhere, then find the Node before it, and make the Node before it point to the
      * Node next to it.<br>
      */
-    public void remove(int index) {
+    public void removeAt(int index) {
         if (index < 0 || index >= size) {
             throw new IllegalArgumentException("index out of bounds");
         }

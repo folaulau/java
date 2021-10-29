@@ -51,7 +51,7 @@ public class LinkedListMain {
         System.out.println("n: " + n.getData().toString());
 
         System.out.println("Removing item from list");
-        linkedList.remove(2);
+        linkedList.removeAt(2);
         linkedList.printList();
 
         linkedList.add(1, new SingleNode(new Customer("Fusi", "Kaveinga", "fusi@gmail.com")));
@@ -75,14 +75,14 @@ public class LinkedListMain {
         linkedList.printList();
 
         System.out.println("Removing Lisa(2) from list");
-        linkedList.remove(2);
+        linkedList.removeAt(2);
         linkedList.printList();
 
         linkedList.append(new DoubleNode(new Customer("Lisa", "Kaveinga", "efinau10@gmail.com")));
         linkedList.printList();
 
         System.out.println("Removing top from list");
-        linkedList.remove(0);
+        linkedList.removeAt(0);
         linkedList.printList();
 
         linkedList.append(new DoubleNode(new Customer("Nesi", "Kaveinga", "efinau10@gmail.com")));
@@ -107,7 +107,7 @@ public class LinkedListMain {
 
         System.out.println("Removing top from list");
 
-        linkedList.remove(0);
+        linkedList.removeAt(0);
         linkedList.printList();
 
     }
@@ -123,7 +123,7 @@ public class LinkedListMain {
 
         System.out.println("Removing from bottom of list");
 
-        linkedList.remove(linkedList.getSize() - 1);
+        linkedList.removeAt(linkedList.getSize() - 1);
         linkedList.printList();
 
     }
@@ -139,7 +139,7 @@ public class LinkedListMain {
 
         System.out.println("Removing from index(" + index + ") of list");
 
-        linkedList.remove(index);
+        linkedList.removeAt(index);
         linkedList.printList();
 
     }
