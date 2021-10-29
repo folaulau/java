@@ -13,9 +13,9 @@ public class LinkedListMain {
 
         // removeFromBottom();
         //
-        // removeFromIndex(2);
+        removeFromIndex(2);
 
-        removeNode();
+        //removeNode();
 
         List<Customer> linkedList = new LinkedList<>();
     }

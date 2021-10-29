@@ -197,18 +197,21 @@ public class MySingleLinkedList {
         if (index < 0 || index >= size) {
             throw new IllegalArgumentException("index out of bounds");
         }
+        
+        if (index==0) {
 
-        int count = 0;
+            this.head = this.head.getNext();
+            return;
+            
+        }
 
-        SingleNode previous = null;
-        SingleNode currentNode = this.head;
+        int count = 1;
+
+        SingleNode previous = this.head;
+        SingleNode currentNode = this.head.getNext();
         SingleNode next = null;
 
-        while (currentNode.getNext() != null) {
-
-            if (index == count) {
-                break;
-            }
+        while (count < index) {
 
             previous = currentNode;
             currentNode = currentNode.getNext();
@@ -218,17 +221,13 @@ public class MySingleLinkedList {
 
         }
 
-        if (currentNode.equals(this.head)) {
-
-            this.head = this.head.getNext();
-
-        } else if (currentNode.equals(this.tail)) {
+        if (currentNode.equals(this.tail)) {
 
             this.tail = previous;
-            previous.setNext(null);
+            this.tail.setNext(null);
 
         } else {
-
+            // drop currentNode
             previous.setNext(next);
         }
 

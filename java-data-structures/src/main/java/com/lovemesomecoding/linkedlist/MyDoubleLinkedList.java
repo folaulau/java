@@ -211,8 +211,6 @@ public class MyDoubleLinkedList {
             throw new IllegalArgumentException("index out of bounds");
         }
 
-        int count = 0;
-
         if (index == 0) {
 
             this.head = this.head.getNext();
@@ -225,15 +223,13 @@ public class MyDoubleLinkedList {
 
         } else {
 
-            DoubleNode previous = null;
-            DoubleNode currentNode = this.head;
+            int count = 1;
+
+            DoubleNode previous = this.head;
+            DoubleNode currentNode = this.head.getNext();
             DoubleNode next = null;
 
-            while (currentNode.getNext() != null) {
-
-                if (index == count) {
-                    break;
-                }
+            while (count < index) {
 
                 previous = currentNode;
                 currentNode = currentNode.getNext();
@@ -244,7 +240,10 @@ public class MyDoubleLinkedList {
             }
 
             previous.setNext(next);
-            next.setPrev(previous);
+
+            if (next != null) {
+                next.setPrev(previous);
+            }
 
         }
 
