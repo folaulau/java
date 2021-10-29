@@ -275,6 +275,7 @@ public class MyDoubleLinkedList {
             node = node.getNext();
 
             if (node == null) {
+                System.out.println("tail: " + tail.getData().toString());
                 System.out.println("end of list\n");
             }
 
@@ -282,5 +283,6 @@ public class MyDoubleLinkedList {
 
             count++;
         }
+        
     }
 }
