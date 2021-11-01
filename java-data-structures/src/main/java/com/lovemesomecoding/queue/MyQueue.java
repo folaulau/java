@@ -24,6 +24,17 @@ public class MyQueue<E> {
         return list.removeLast();
     }
 
+    public E peek() {
+        if (list.size() <= 0) {
+            return null;
+        }
+        return list.peek();
+    }
+
+    public boolean isEmpty() {
+        return list.size() <= 0;
+    }
+
     public int getSize() {
         return list.size();
     }
