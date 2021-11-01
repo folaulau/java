@@ -23,5 +23,9 @@ public class StackMain {
         
         customers.print();
 
+        Stack<Customer> stack = new Stack<Customer>();
+        stack.push(new Customer("Folau", "Kaveinga", "folau@gmail.com"));
+        
+        
     }
 }
