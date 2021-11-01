@@ -31,7 +31,7 @@ public class QueueMain {
         priorityQueue.forEach(cust -> {
             System.out.println(cust.toString());
         });
-        System.out.println("Polling");
+        System.out.println("Polling top");
         System.out.println(priorityQueue.poll().toString()); 
     }
 

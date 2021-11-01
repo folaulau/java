@@ -25,7 +25,10 @@ public class StackMain {
 
         Stack<Customer> stack = new Stack<Customer>();
         stack.push(new Customer("Folau", "Kaveinga", "folau@gmail.com"));
+        stack.push(new Customer("Lisa", "Kaveinga", "lisa@gmail.com"));
+        stack.push(new Customer("Laulau", "Kaveinga", "laulau@gmail.com"));
         
-        
+        System.out.println("Polling...");
+        System.out.println(stack.pop().toString());
     }
 }
