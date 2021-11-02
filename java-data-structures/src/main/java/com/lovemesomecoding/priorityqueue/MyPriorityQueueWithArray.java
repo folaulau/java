@@ -35,7 +35,7 @@ public class MyPriorityQueueWithArray {
 
             }
 
-            add(node, position, count, capacity);
+            add(node, position);
 
         }
 
@@ -44,9 +44,9 @@ public class MyPriorityQueueWithArray {
         count++;
     }
 
-    private void add(PriorityNode node, int position, int occupiedCapacity, int capacity) {
+    private void add(PriorityNode node, int position) {
 
-        if (occupiedCapacity == capacity) {
+        if (count == capacity) {
             /*
              * full
              */
@@ -56,7 +56,7 @@ public class MyPriorityQueueWithArray {
         PriorityNode[] temp = new PriorityNode[capacity];
 
         int index = 0;
-        int lastIndex = occupiedCapacity + 1;
+        int lastIndex = count + 1;
 
         while (index < lastIndex) {
 
@@ -110,7 +110,7 @@ public class MyPriorityQueueWithArray {
                  * back
                  */
                 System.out.println("back");
-                temp[index-1] = elements[index];
+                temp[index - 1] = elements[index];
             }
             if (temp[index] != null)
                 System.out.println("temp: " + temp[index].toString());
@@ -137,7 +137,7 @@ public class MyPriorityQueueWithArray {
         remove(0);
         return top;
     }
-    
+
     public PriorityNode removeAt(int index) {
         PriorityNode top = elements[index];
         remove(index);
