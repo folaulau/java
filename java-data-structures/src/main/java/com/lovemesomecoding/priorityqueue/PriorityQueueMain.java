@@ -6,7 +6,7 @@ public class PriorityQueueMain {
 
     public static void main(String[] args) {
         // TODO Auto-generated method stub
-        MyPriorityQueueWithArray prQueueWithArray = new MyPriorityQueueWithArray();
+        PriorityQueueWithArray prQueueWithArray = new PriorityQueueWithArray();
         prQueueWithArray.enqueue(new PriorityNode(new Customer("Folau", "Kaveinga", "folau@gmail.com"), 9));
         prQueueWithArray.enqueue(new PriorityNode(new Customer("Lisa", "Kaveinga", "lisa@gmail.com"), 10));
         prQueueWithArray.enqueue(new PriorityNode(new Customer("Fusi", "Kaveinga", "fusi@gmail.com"), 4));
@@ -15,7 +15,7 @@ public class PriorityQueueMain {
 
         prQueueWithArray.print();
 
-        prQueueWithArray.poll();
+        prQueueWithArray.dequeue();
 
         prQueueWithArray.print();
 

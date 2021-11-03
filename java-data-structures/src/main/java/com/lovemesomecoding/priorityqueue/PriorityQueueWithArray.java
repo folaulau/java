@@ -2,7 +2,7 @@ package com.lovemesomecoding.priorityqueue;
 
 import java.util.LinkedList;
 
-public class MyPriorityQueueWithArray {
+public class PriorityQueueWithArray {
 
     private int            count    = 0;
     private int            capacity = 10;
@@ -48,7 +48,7 @@ public class MyPriorityQueueWithArray {
 
         if (count == capacity) {
             /*
-             * full
+             * when full, double its size
              */
             capacity = capacity * 2;
         }
@@ -83,16 +83,16 @@ public class MyPriorityQueueWithArray {
         elements = temp;
     }
 
-    private void remove(int position) {
+    public PriorityNode removeAt(int position) {
 
         PriorityNode[] temp = new PriorityNode[capacity];
+
+        PriorityNode removedNode = elements[position];
 
         int index = 0;
         int lastIndex = count + 1;
 
         while (index < lastIndex) {
-
-            System.out.println("index: " + index + ", lastIndex: " + lastIndex + ", position: " + position);
 
             if (index < position) {
                 /**
@@ -120,6 +120,8 @@ public class MyPriorityQueueWithArray {
         }
 
         elements = temp;
+
+        return removedNode;
     }
 
     /**
@@ -132,16 +134,8 @@ public class MyPriorityQueueWithArray {
     /**
      * Retrieves and removes the head of this queue, or returns null if this queue is empty.
      */
-    public PriorityNode poll() {
-        PriorityNode top = elements[0];
-        remove(0);
-        return top;
-    }
-
-    public PriorityNode removeAt(int index) {
-        PriorityNode top = elements[index];
-        remove(index);
-        return top;
+    public PriorityNode dequeue() {
+        return removeAt(0);
     }
 
     public void print() {
