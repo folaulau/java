@@ -9,11 +9,11 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 /**
- * Step 1 − Create a new node at the end of heap.<br>
- * Step 2 − Assign new value to the node.<br>
- * Step 3 − Compare the value of this child node with its parent.<br>
+ * Step 1 − Insert the newNode as last leaf from left to right.<br>
+ * Step 2 − Compare newNode value with its Parent node.<br>
  * Step 4 − If value of parent is greater than child, then swap them.<br>
- * Step 5 − Repeat step 3 & 4 until Heap property holds.<br>
+ * Step 5 − Repeat step 2 and step 3 until newNode value is greater than its parent node (or) newNode reaches to
+ * root.<br>
  */
 @NoArgsConstructor
 @AllArgsConstructor
@@ -21,7 +21,7 @@ import lombok.ToString;
 @ToString
 public class MinHeap {
 
-    private List<Integer> data = new ArrayList<>();
+    private List<User> data = new ArrayList<>();
 
     /**
      * Function to return the position of the parent for the node currently at position
@@ -49,30 +49,43 @@ public class MinHeap {
 
     private void swap(int firstPosition, int secondPosition) {
         System.out.println("firstPosition: " + firstPosition + ", data: " + this.data.get(firstPosition) + ", secondPosition: " + secondPosition + ", data: " + this.data.get(secondPosition));
-        int tmp = this.data.get(firstPosition);
+        User tmp = this.data.get(firstPosition);
         this.data.set(firstPosition, this.data.get(secondPosition));
         this.data.set(secondPosition, tmp);
         System.out.println("firstPosition: " + firstPosition + ", data: " + this.data.get(firstPosition) + ", secondPosition: " + secondPosition + ", data: " + this.data.get(secondPosition));
 
     }
 
-    public void add(int item) {
-        this.data.add(item);
+    public void add(User user) {
+        this.data.add(user);
 
         // increase the size of an array Heap[++size] = element;
         int current = getSize() - 1;
 
-        System.out.println("adding: " + item + " to position: " + current);
+        System.out.println("adding: " + user.toString() + " to position: " + current);
 
         heapifyUp(current);
     }
 
-    public int peek() {
+    public User peek() {
         return data.get(0);
     }
 
-    public int poll() {
-        int head = data.get(0);
+    /**
+     * Swap the root node with last node in max heap<br>
+     * Step 2 - Delete last node.<br>
+     * Step 3 - Now, compare root value with its left child value.<br>
+     * Step 4 - If root value is greater than its left child, then compare left child with its right sibling. Else goto
+     * Step 6<br>
+     * Step 5 - If left child value is smaller than its right sibling, then swap root with left child otherwise swap
+     * root with its right child.<br>
+     * Step 6 - If root value is smaller than its left child, then compare root value with its right child value.<br>
+     * Step 7 - If root value is greater than its right child, then swap root with right child otherwise stop the
+     * process.<br>
+     * Step 8 - Repeat the same until root node fixes at its exact position.<br>
+     */
+    public User poll() {
+        User head = data.get(0);
 
         // replace the root of the heap with the last element
         data.set(0, this.data.get(getSize() - 1));
@@ -84,16 +97,16 @@ public class MinHeap {
     }
 
     /**
-     * Step 1 − Create a new node at the end of heap.<br>
-     * Step 2 − Assign new value to the node.<br>
-     * Step 3 − Compare the value of this child node with its parent.<br>
+     * Step 1 − Insert the newNode as last leaf from left to right.<br>
+     * Step 2 − Compare newNode value with its Parent node.<br>
      * Step 4 − If value of parent is greater than child, then swap them.<br>
-     * Step 5 − Repeat step 3 & 4 until Heap property holds.<br>
+     * Step 5 − Repeat step 2 and step 3 until newNode value is greater than its parent node (or) newNode reaches to
+     * root.<br>
      */
     private void heapifyUp(int position) {
-        int temp = this.data.get(position);
+        User temp = this.data.get(position);
 
-        if (position > 0 && temp < this.data.get(parent(position))) {
+        if (position > 0 && temp.getRating() < this.data.get(parent(position)).getRating()) {
             System.out.println("heapifyUp - position: " + position + ", data: " + this.data.get(parent(position)));
             // swap the two if heap property is violated
             swap(position, parent(position));
@@ -102,7 +115,6 @@ public class MinHeap {
             heapifyUp(parent(position));
         }
     }
-
 
     /**
      * Step 1 − Remove root node.<br>
@@ -117,15 +129,16 @@ public class MinHeap {
         int leftChild = left(position);
         int rightChild = right(position);
 
-        // compare `A[i]` with its left and right child
-        // and find the smallest value
+        /**
+         * compare parent with its left and right child and find the smallest value
+         */
         int size = getSize();
 
-        if (leftChild < size && this.data.get(leftChild) < this.data.get(smallest)) {
+        if (leftChild < size && this.data.get(smallest).getRating() > this.data.get(leftChild).getRating()) {
             smallest = leftChild;
         }
 
-        if (rightChild < size && this.data.get(rightChild) < this.data.get(smallest)) {
+        if (rightChild < size && this.data.get(smallest).getRating() > this.data.get(rightChild).getRating()) {
             smallest = rightChild;
         }
 
@@ -141,7 +154,7 @@ public class MinHeap {
 
     public void print() {
         System.out.println("\nList");
-        for (Integer d : data) {
+        for (User d : data) {
             System.out.println("data: " + d);
         }
         System.out.println("\nTree");
@@ -149,19 +162,19 @@ public class MinHeap {
         for (int i = 1; i <= getSize() / 2; i++) {
 
             try {
-                System.out.print("Parent: " + this.data.get(i - 1));
+                System.out.print("Parent: " + this.data.get(i - 1).toString());
             } catch (Exception e) {
 
             }
 
             try {
-                System.out.print(", Left: " + this.data.get(this.left(i - 1)));
+                System.out.print(", Left: " + this.data.get(this.left(i - 1)).toString());
             } catch (Exception e) {
 
             }
 
             try {
-                System.out.print(", Right: " + this.data.get((this.right(i - 1))));
+                System.out.print(", Right: " + this.data.get((this.right(i - 1))).toString());
             } catch (Exception e) {
 
             }

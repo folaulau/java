@@ -35,25 +35,54 @@ public class HeapMain {
 
         System.out.println("\nMinHeap");
         MinHeap minHeap = new MinHeap();
-        minHeap.add(35);
+//        minHeap.add(35);
+//
+//        minHeap.print();
+//
+//        minHeap.add(33);
+//        minHeap.add(42);
+//
+//        minHeap.print();
+//
+//        minHeap.add(10);
+//
+//        minHeap.print();
+//
+//        minHeap.add(14);
+//        minHeap.add(19);
+//        minHeap.add(27);
+//        minHeap.add(44);
+//        minHeap.add(26);
+//        minHeap.add(31);
+//
+//        System.out.println("peek: " + minHeap.peek());
+//
+//        minHeap.print();
+//
+//        System.out.println("polling...");
+//        System.out.println("poll value: " + minHeap.poll());
+//
+//        minHeap.print();
+        
+        minHeap.add(new User("Lau", 35));
 
         minHeap.print();
 
-        minHeap.add(33);
-        minHeap.add(42);
+        minHeap.add(new User("Kinga", 33));
+        minHeap.add(new User("Fusi", 42));
 
         minHeap.print();
 
-        minHeap.add(10);
+        minHeap.add(new User("Nesi", 10));
 
         minHeap.print();
 
-        minHeap.add(14);
-        minHeap.add(19);
-        minHeap.add(27);
-        minHeap.add(44);
-        minHeap.add(26);
-        minHeap.add(31);
+        minHeap.add(new User("Melenesi", 14));
+        minHeap.add(new User("Lisa", 19));
+        minHeap.add(new User("Ati", 27));
+        minHeap.add(new User("Aitu", 44));
+        minHeap.add(new User("None", 26));
+        minHeap.add(new User("Tofa", 31));
 
         System.out.println("peek: " + minHeap.peek());
 

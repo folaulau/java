@@ -8,13 +8,11 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-
 /**
- * Step 1 − Create a new node at the end of heap.<br>
- * Step 2 − Assign new value to the node.<br>
- * Step 3 − Compare the value of this child node with its parent.<br>
+ * Step 1 − Insert the newNode as last leaf from left to right.<br>
+ * Step 2 − Compare newNode value with its Parent node.<br>
  * Step 4 − If value of parent is less than child, then swap them.<br>
- * Step 5 − Repeat step 3 & 4 until Heap property holds.<br>
+ * Step 5 − Repeat step 2 and step 3 until newNode value is less than its parent node (or) newNode reaches to root.<br>
  */
 @NoArgsConstructor
 @AllArgsConstructor
@@ -73,18 +71,27 @@ public class MaxHeap {
     }
 
     /**
-     * Step 1 − Remove root node.<br>
-     * Step 2 − Move the last element of last level to root.<br>
-     * Step 3 − Compare the value of this child node with its parent.<br>
-     * Step 4 − If value of parent is less than child, then swap them.<br>
-     * Step 5 − Repeat step 3 & 4 until Heap property holds.<br>
+     * Swap the root node with last node in max heap<br>
+     * Step 2 - Delete last node.<br>
+     * Step 3 - Now, compare root value with its left child value.<br>
+     * Step 4 - If root value is smaller than its left child, then compare left child with its right sibling. Else goto
+     * Step 6<br>
+     * Step 5 - If left child value is larger than its right sibling, then swap root with left child otherwise swap root
+     * with its right child.<br>
+     * Step 6 - If root value is larger than its left child, then compare root value with its right child value.<br>
+     * Step 7 - If root value is smaller than its right child, then swap root with right child otherwise stop the
+     * process.<br>
+     * Step 8 - Repeat the same until root node fixes at its exact position.<br>
      */
     public int poll() {
         int head = data.get(0);
 
-        // replace the root of the heap with the last element
+        // swap root node with last element
         data.set(0, this.data.get(getSize() - 1));
+        
+        // delete last node(previous root node)
         data.remove(getSize() - 1);
+        
         // call heapify-down on the root node
         heapifyDown(0);
 
@@ -92,11 +99,11 @@ public class MaxHeap {
     }
 
     /**
-     * Step 1 − Create a new node at the end of heap.<br>
-     * Step 2 − Assign new value to the node.<br>
-     * Step 3 − Compare the value of this child node with its parent.<br>
+     * Step 1 − Insert the newNode as last leaf from left to right.<br>
+     * Step 2 − Compare newNode value with its Parent node.<br>
      * Step 4 − If value of parent is less than child, then swap them.<br>
-     * Step 5 − Repeat step 3 & 4 until Heap property holds.<br>
+     * Step 5 − Repeat step 2 and step 3 until newNode value is less than its parent node (or) newNode reaches to
+     * root.<br>
      */
     private void heapifyUp(int position) {
         int temp = this.data.get(position);
@@ -124,21 +131,22 @@ public class MaxHeap {
         int leftChild = left(position);
         int rightChild = right(position);
 
-        // compare `A[i]` with its left and right child
-        // and find the largest value
         int size = getSize();
 
-        if (leftChild < size && this.data.get(leftChild) > this.data.get(largest)) {
+        /**
+         * compare parent with its left and right child and find the largest value
+         */
+        if (leftChild < size && this.data.get(largest) < this.data.get(leftChild)) {
             largest = leftChild;
         }
 
-        if (rightChild < size && this.data.get(rightChild) > this.data.get(largest)) {
+        if (rightChild < size && this.data.get(largest) < this.data.get(rightChild)) {
             largest = rightChild;
         }
 
         if (largest != position) {
 
-            // swap with a child having lesser value
+            // swap with a child having greater value
             swap(position, largest);
 
             // call heapify-down on the child
