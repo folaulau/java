@@ -30,6 +30,10 @@ public class HeapMain {
 
         maxHeap.print();
 
+        System.out.println("poll: " + maxHeap.poll());
+
+        maxHeap.print();
+
         System.out.println("\nMinHeap");
         MinHeap minHeap = new MinHeap();
         minHeap.add(35);
@@ -55,6 +59,10 @@ public class HeapMain {
         System.out.println("peek: " + minHeap.peek());
 
         minHeap.print();
+
+        System.out.println("poll: " + minHeap.poll());
+
+        maxHeap.print();
     }
 
 }

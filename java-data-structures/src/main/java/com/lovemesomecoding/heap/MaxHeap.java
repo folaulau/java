@@ -8,8 +8,13 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+
 /**
- * 
+ * Step 1 − Create a new node at the end of heap.<br>
+ * Step 2 − Assign new value to the node.<br>
+ * Step 3 − Compare the value of this child node with its parent.<br>
+ * Step 4 − If value of parent is less than child, then swap them.<br>
+ * Step 5 − Repeat step 3 & 4 until Heap property holds.<br>
  */
 @NoArgsConstructor
 @AllArgsConstructor
@@ -22,7 +27,7 @@ public class MaxHeap {
     /**
      * Function to return the position of the parent for the node currently at position
      */
-    public int parent(int position) {
+    private int parent(int position) {
         if (position == 0) {
             return 0;
         }
@@ -32,14 +37,14 @@ public class MaxHeap {
     /**
      * Function to return the position of the left child for the node currently at position
      */
-    public int left(int position) {
+    private int left(int position) {
         return (2 * position) + 1;
     }
 
     /**
      * Function to return the position of the right child for the node currently at position
      */
-    public int right(int position) {
+    private int right(int position) {
         return (2 * position) + 2;
     }
 
@@ -67,6 +72,13 @@ public class MaxHeap {
         return data.get(0);
     }
 
+    /**
+     * Step 1 − Remove root node.<br>
+     * Step 2 − Move the last element of last level to root.<br>
+     * Step 3 − Compare the value of this child node with its parent.<br>
+     * Step 4 − If value of parent is less than child, then swap them.<br>
+     * Step 5 − Repeat step 3 & 4 until Heap property holds.<br>
+     */
     public int poll() {
         int head = data.get(0);
 
@@ -79,11 +91,18 @@ public class MaxHeap {
         return head;
     }
 
-    public void heapifyUp(int position) {
+    /**
+     * Step 1 − Create a new node at the end of heap.<br>
+     * Step 2 − Assign new value to the node.<br>
+     * Step 3 − Compare the value of this child node with its parent.<br>
+     * Step 4 − If value of parent is less than child, then swap them.<br>
+     * Step 5 − Repeat step 3 & 4 until Heap property holds.<br>
+     */
+    private void heapifyUp(int position) {
         int temp = this.data.get(position);
 
         if (position > 0 && temp > this.data.get(parent(position))) {
-            System.out.println("position: " + position + ", data: " + this.data.get(parent(position)));
+            System.out.println("heapifyUp - position: " + position + ", data: " + this.data.get(parent(position)));
             // swap the two if heap property is violated
             swap(position, parent(position));
 
