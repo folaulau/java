@@ -76,7 +76,7 @@ public class MinHeap {
 
         // replace the root of the heap with the last element
         data.set(0, this.data.get(getSize() - 1));
-
+        data.remove(getSize() - 1);
         // call heapify-down on the root node
         heapifyDown(0);
 
@@ -103,6 +103,14 @@ public class MinHeap {
         }
     }
 
+
+    /**
+     * Step 1 − Remove root node.<br>
+     * Step 2 − Move the last element of last level to root.<br>
+     * Step 3 − Compare the value of this child node with its parent.<br>
+     * Step 4 − If value of parent is greater than child, then swap them.<br>
+     * Step 5 − Repeat step 3 & 4 until Heap property holds.<br>
+     */
     private void heapifyDown(int position) {
 
         int smallest = position;

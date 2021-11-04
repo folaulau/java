@@ -3,7 +3,6 @@ package com.lovemesomecoding.heap;
 public class HeapMain {
 
     public static void main(String[] args) {
-        // TODO Auto-generated method stub
         System.out.println("\nMaxHeap");
         MaxHeap maxHeap = new MaxHeap();
         maxHeap.add(35);
@@ -60,9 +59,10 @@ public class HeapMain {
 
         minHeap.print();
 
-        System.out.println("poll: " + minHeap.poll());
+        System.out.println("polling...");
+        System.out.println("poll value: " + minHeap.poll());
 
-        maxHeap.print();
+        minHeap.print();
     }
 
 }

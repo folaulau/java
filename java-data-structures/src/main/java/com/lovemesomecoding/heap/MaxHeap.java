@@ -84,7 +84,7 @@ public class MaxHeap {
 
         // replace the root of the heap with the last element
         data.set(0, this.data.get(getSize() - 1));
-
+        data.remove(getSize() - 1);
         // call heapify-down on the root node
         heapifyDown(0);
 
@@ -111,31 +111,38 @@ public class MaxHeap {
         }
     }
 
+    /**
+     * Step 1 − Remove root node.<br>
+     * Step 2 − Move the last element of last level to root.<br>
+     * Step 3 − Compare the value of this child node with its parent.<br>
+     * Step 4 − If value of parent is less than child, then swap them.<br>
+     * Step 5 − Repeat step 3 & 4 until Heap property holds.<br>
+     */
     private void heapifyDown(int position) {
 
-        int smallest = position;
+        int largest = position;
         int leftChild = left(position);
         int rightChild = right(position);
 
         // compare `A[i]` with its left and right child
-        // and find the smallest value
+        // and find the largest value
         int size = getSize();
 
-        if (leftChild < size && this.data.get(leftChild) > this.data.get(smallest)) {
-            smallest = leftChild;
+        if (leftChild < size && this.data.get(leftChild) > this.data.get(largest)) {
+            largest = leftChild;
         }
 
-        if (rightChild < size && this.data.get(rightChild) > this.data.get(smallest)) {
-            smallest = rightChild;
+        if (rightChild < size && this.data.get(rightChild) > this.data.get(largest)) {
+            largest = rightChild;
         }
 
-        if (smallest != position) {
+        if (largest != position) {
 
             // swap with a child having lesser value
-            swap(position, smallest);
+            swap(position, largest);
 
             // call heapify-down on the child
-            heapifyDown(smallest);
+            heapifyDown(largest);
         }
     }
 
