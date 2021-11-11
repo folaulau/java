@@ -1,4 +1,4 @@
-package com.lovemesomecoding.array.tree.binary;
+package com.lovemesomecoding.tree.binary;
 
 import com.lovemesomecoding.heap.User;
 import com.lovemesomecoding.linkedlist.Customer;

@@ -1,4 +1,4 @@
-package com.lovemesomecoding.array.tree.binary;
+package com.lovemesomecoding.tree.binary;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
