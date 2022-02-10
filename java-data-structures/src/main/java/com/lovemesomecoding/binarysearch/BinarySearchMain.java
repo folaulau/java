@@ -8,6 +8,9 @@ public class BinarySearchMain {
      * Time: O(nlogn)<br>
      * Space: O(1)
      */
+    /**
+     * 
+     */
     public static void main(String[] args) {
         CustomBinarySearch bs = new CustomBinarySearch();
 
