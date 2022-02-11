@@ -15,25 +15,29 @@ public class RecursionMain {
     public static void main(String[] args) {
 
         int num = 9;
-        
+
         int factorialOf = factorial(num);
-        System.out.println("factorialOf of "+num+": " + factorialOf);
+        System.out.println("factorialOf of " + num + ": " + factorialOf);
 
         factorialOf = factorialWithLoop(num);
-        System.out.println("factorialWithLoop with "+num+": " + factorialOf);
+        System.out.println("factorialWithLoop with " + num + ": " + factorialOf);
 
         int fibonacciOf = fibonacci(9);
-        System.out.println("fibonacci of "+num+": " + fibonacciOf);
+        System.out.println("fibonacci of " + num + ": " + fibonacciOf);
 
         fibonacciOf = fibonacciWithLoop(num);
-        System.out.println("fibonacciWithLoop of "+num+": " + fibonacciOf);
+        System.out.println("fibonacciWithLoop of " + num + ": " + fibonacciOf);
 
         int total = sum(num);
-        System.out.println("sum of "+num+": " + total);
+        System.out.println("sum of " + num + ": " + total);
 
         total = sumWithLoop(num);
 
-        System.out.println("sumWithLoop of "+num+": " + total);
+        System.out.println("sumWithLoop of " + num + ": " + total);
+
+        Map<Integer, Integer> map = new HashMap<>();
+        total = fibonacciWithMomiezation(num, map);
+        System.out.println("fibonacciWithMomiezation of " + num + ": " + total);
     }
 
     /**
@@ -84,6 +88,23 @@ public class RecursionMain {
         int number1 = fibonacci(num - 1);
         int number2 = fibonacci(num - 2);
         return number1 + number2;
+    }
+
+    private static int fibonacciWithMomiezation(int num, Map<Integer, Integer> map) {
+        if (num <= 1) {
+            return num;
+        }
+
+        if (map.containsKey(num)) {
+            return map.get(num);
+        }
+
+        int number1 = fibonacciWithMomiezation(num - 1, map);
+        int number2 = fibonacciWithMomiezation(num - 2, map);
+
+        int sum = number1 + number2;
+        map.put(num, sum);
+        return sum;
     }
 
     /**
