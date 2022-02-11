@@ -26,7 +26,7 @@ public class CustomQuickSort {
     }
 
     // method to find the partition position
-    int partition(int array[], int low, int high) {
+    private int partition(int array[], int low, int high) {
         System.out.println("partion, low: " + low + ", high: " + high);
         // choose the rightmost element as pivot
         int pivot = array[high];
