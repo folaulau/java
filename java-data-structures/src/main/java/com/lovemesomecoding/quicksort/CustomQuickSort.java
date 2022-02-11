@@ -1,8 +1,13 @@
 package com.lovemesomecoding.quicksort;
 
+import java.util.Arrays;
+
 public class CustomQuickSort {
 
     public int[] sort(int[] array, int low, int high) {
+
+        System.out.println("low: " + low + ", high: " + high + ", array: " + Arrays.toString(array));
+
         if (low < high) {
 
             // find pivot element such that
@@ -16,12 +21,13 @@ public class CustomQuickSort {
             // recursive call on the right of pivot
             sort(array, pivot + 1, high);
         }
+
         return array;
     }
 
     // method to find the partition position
     int partition(int array[], int low, int high) {
-
+        System.out.println("partion, low: " + low + ", high: " + high);
         // choose the rightmost element as pivot
         int pivot = array[high];
 
@@ -31,10 +37,11 @@ public class CustomQuickSort {
         // traverse through all elements
         // compare each element with pivot
         for (int j = low; j < high; j++) {
+            System.out.println("compare element: " + array[j] + " with pivot: " + pivot);
             if (array[j] <= pivot) {
 
                 // if element smaller than pivot is found
-                // swap it with the greatr element pointed by i
+                // swap it with the greater element pointed by i
                 i++;
 
                 // swapping element at i with element at j
@@ -43,15 +50,17 @@ public class CustomQuickSort {
 
         }
 
-        // swapt the pivot element with the greater element specified by i
+        // swap the pivot element with the greater element specified by i
 
         swap((i + 1), high, array);
-
+        
+        System.out.println("\n\n");
         // return the position from where partition is done
         return (i + 1);
     }
 
     private void swap(int i, int j, int[] array) {
+        System.out.println("swapping " + array[i] + " and " + array[j]);
         int temp = array[j];
         array[j] = array[i];
         array[i] = temp;
